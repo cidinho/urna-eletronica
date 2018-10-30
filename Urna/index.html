@@ -1,0 +1,55 @@
+<head>
+  <meta charset="UTF-8">
+  <style type="text/css">
+    #resultado,
+    #status,
+    #alunos,
+    #apuracao {
+      border: 1px solid #ff0000;
+      color: #ff0000;
+      min-height: 50px;
+      line-height: 50px;
+      text-align: center;
+    }
+
+    #status {
+      border: 1px solid #ffffff;
+      background-color: rgb(178, 210, 179);
+      color: #FFFFFF;
+    }
+
+    #btnBranco {
+      background-color: #FFFFFF;
+
+    }
+
+    #btnCorrige {
+      background-color: orange;
+
+    }
+
+    #btnConfirma {
+      background-color: #00FF00;
+
+    }
+
+    #btnBranco,
+    #btnCorrige,
+    #btnConfirma {
+      font-weight: bold
+    }
+  </style>
+</head>
+
+<body>
+  <h3>Urna Eletrônica</h3>
+  <form onsubmit="return false;">
+    <div id="urna">
+      <p><label>Voto Para Presidente</label><input type="text" id="voto" /></p>
+      <p><button type="button" id="btnBranco" onclick="votoBranco()">BRANCO</button><button type="button" id="btnCorrige"
+          onclick="corrigeVoto()">CORRIGE</button><button type="button" id="btnConfirma" onclick="confirmarVoto()">CONFIRMA</button></p>
+    </div><button type="button" onclick="apurarVoto()">APURAÇÃO</button>
+    <div id="apuracao"></div>
+  </form>
+  
+<script src="urna.js"></script>
