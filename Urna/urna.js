@@ -6,6 +6,12 @@ var candidatos = [
 var brancos = 0
 var nulos = 0
 
+/**
+ * Função para confirmar o voto
+ * 
+ * Apenas grava a informação do voto dentro
+ * do array resultadoEleicao
+ */
 function confirmarVoto(){
 	const voto = $("voto").value
 	if(voto != ""){
@@ -15,6 +21,9 @@ function confirmarVoto(){
 	corrigeVoto()
 }
 
+/**
+ * Função para adicionar voto em Branco
+ */
 function votoBranco(){
 	const voto = "BRANCO"
 	brancos++
@@ -22,11 +31,19 @@ function votoBranco(){
 	corrigeVoto()
 }
 
+/**
+ * Função da tecla corrige
+ * Limpa o campo de votação
+ */
 function corrigeVoto(){
 	$("voto").value = ""
 	$("voto").focus()
 }
 
+/**
+ * Função responsável pelo embaralhamento,
+ * contagem e formatação do resultado
+ */
 function apurarVoto(){	
 	$("urna").style.display = "none";
 	/* Embaralha os votos para esconder a ordem de votação */
@@ -57,10 +74,13 @@ function apurarVoto(){
 		nome:"NULO",
 		legenda: "NULO",
 		numVoto: nulos
-	})
+    })
+    //Impressão na tela do boletim de urna
 	imprimirBoletimDeUrna()
 }
-
+/**
+ * Função que gera e imprime o Boletim de Urna
+ */
 function imprimirBoletimDeUrna(){
 	$("apuracao").innerHTML = ""
 	alert("Contando votos...")
@@ -68,7 +88,8 @@ function imprimirBoletimDeUrna(){
 	var eleito = {}
 	const votosValidos = resultadoEleicao.length - nulos
 	const votosMinimos  = (votosValidos/2)+1
-	
+    
+    //Varrendo cada posição do array de candidatos e exibindo seus votos
 	for(var index in candidatos){
 		var candidato = candidatos[index]
 		var percentual = (resultadoEleicao.length>0)? parseFloat((candidato.numVoto/resultadoEleicao.length)* 100): 0
@@ -76,17 +97,14 @@ function imprimirBoletimDeUrna(){
 		candidato.percentual = percentual.toFixed(2)
 		
 		//Testando se o candidato está eleito. Caso ele possua metade dos votos válidos + 1
-//console.log(votosMinimos)		
-//console.log(candidato.numVoto)
 		if(candidato.numVoto >= votosMinimos){
 			eleito = candidato
 		}
 		
 	}
-	console.log(eleito)
 	
 	tabela += "</tbody></table>"
-	tabela += "<p><b>Eleito:</b> "+ eleito.nome + " com "+eleito.numVoto+" voto(s)</p>"
+	tabela += "<p><b>Eleito:</b> "+ eleito.nome + " com "+eleito.numVoto+" voto(s) e "+percentual+"% dos votos válidos</p>"
 	tabela += "<p><b>Total de Votos:</b> "+ (resultadoEleicao.length + brancos)  + "</p>"
 	tabela += "<p><b>Total de Votos válidos:</b> "+ votosValidos + "</p>"
 	tabela += "<p><b>Total de Votos NULOS/BRANCOS:</b> "+ (nulos+brancos) + "</p>"
