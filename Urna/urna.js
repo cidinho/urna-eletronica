@@ -104,7 +104,7 @@ function imprimirBoletimDeUrna(){
 	}
 	
 	tabela += "</tbody></table>"
-	tabela += "<p><b>Eleito:</b> "+ eleito.nome + " com "+eleito.numVoto+" voto(s) e "+percentual+"% dos votos válidos</p>"
+	tabela += "<p><b>Eleito:</b> "+ eleito.nome + " com "+eleito.numVoto+" voto(s) e "+eleito.percentual+"% dos votos válidos</p>"
 	tabela += "<p><b>Total de Votos:</b> "+ (resultadoEleicao.length + brancos)  + "</p>"
 	tabela += "<p><b>Total de Votos válidos:</b> "+ votosValidos + "</p>"
 	tabela += "<p><b>Total de Votos NULOS/BRANCOS:</b> "+ (nulos+brancos) + "</p>"
